@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Days
+﻿namespace AdventOfCode.Puzzles.Day3
 {
     using Base;
     using System;
@@ -6,19 +6,15 @@
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public class Day3 : BaseDay
+    public class Impl2 : BasePuzzle
     {
-        public Day3() : base("Day 3", ".\\Inputs\\Day3.txt") { }
+        public Impl2() : base("Day 3b", ".\\Puzzles\\Day3\\Input.txt") { }
 
         public override string RunPart1()
         {
             var inputs = LoadInputs();
             var cloth = BuildClothMap(inputs);
-
-            //Fast 2d->1d Blit copy
-            var tmp = new int[cloth.GetLength(0) * cloth.GetLength(1)];
-            Buffer.BlockCopy(cloth, 0, tmp, 0, tmp.Length * sizeof(int));
-            return tmp.Count(c => c > 1) + " overlapping";
+            return cloth.Count(c => c.Value > 1).ToString();
         }
 
         public override string RunPart2()
@@ -28,29 +24,47 @@
 
             foreach (var ci in inputs)
             {
-                var counter = 0;
-
                 for (var i = ci.FromLeft; i < ci.FromLeft + ci.Width; i++)
+                {
                     for (var j = ci.FromTop; j < ci.FromTop + ci.Height; j++)
-                        counter += cloth[i, j];
-                
-                if (counter == (ci.Width * ci.Height))
-                    return "Id: " + ci.Id;
+                    {
+                        int hash = (i * 1000) + j;
+                        if (cloth[hash] > 1) goto skip;
+                    }
+                }
+
+                return $"{ci.Id}";
+
+                skip:;
             }
+                 
 
             return "No Result";
         }
 
 
-        private static int[,] BuildClothMap(IEnumerable<ClothInput> inputs)
+        private static Dictionary<int, int> BuildClothMap(IEnumerable<ClothInput> inputs)
         {
-            var cloth = new int[1000, 1000];
+            Dictionary<int, int> cloth = new Dictionary<int, int>(); //<hash, count>
 
             foreach (var ci in inputs)
             {
                 for (var i = ci.FromLeft; i < ci.FromLeft + ci.Width; i++)
+                {
                     for (var j = ci.FromTop; j < ci.FromTop + ci.Height; j++)
-                        cloth[i, j] += 1;
+                    {
+                        //max width = 1000;
+                        int hash = (i * 1000) + j;
+                        if (cloth.ContainsKey(hash))
+                        {
+                            cloth[hash]++;
+                        }
+                        else
+                        {
+                            cloth.Add(hash, 1);
+                        }
+                    }
+                }
             }
 
             return cloth;

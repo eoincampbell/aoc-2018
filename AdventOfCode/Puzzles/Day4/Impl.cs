@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Days
+﻿namespace AdventOfCode.Puzzles.Day4
 {
     using Base;
     using System;
@@ -6,9 +6,9 @@
     using System.Linq;
     using System.Text.RegularExpressions;
 
-    public class Day4 : BaseDay
+    public class Impl : BasePuzzle
     {
-        public Day4() : base("Day 4", ".\\Inputs\\Day4.txt") { }
+        public Impl() : base("Day 4 ", ".\\Puzzles\\Day4\\Input.txt") { }
 
         public override string RunPart1()
         {

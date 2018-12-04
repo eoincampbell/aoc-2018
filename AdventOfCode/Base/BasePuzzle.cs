@@ -1,9 +1,9 @@
-﻿namespace AdventOfCode.Days.Base
+﻿namespace AdventOfCode.Base
 {
     using System;
     using System.Diagnostics;
     using System.IO;
-    public abstract class BaseDay : IDay
+    public abstract class BasePuzzle : IPuzzle
     {
         private readonly string _inputFile;
 
@@ -11,7 +11,7 @@
 
         protected string[] Inputs;
 
-        protected BaseDay(string name, string inputFile)
+        protected BasePuzzle(string name, string inputFile)
         {
             Name = name;
             _inputFile = inputFile;

@@ -1,11 +1,11 @@
-﻿namespace AdventOfCode.Days
+﻿namespace AdventOfCode.Puzzles.Day2
 {
     using Base;
     using System.Linq;
 
-    public class Day2 : BaseDay
+    public class Impl : BasePuzzle
     {
-        public Day2() : base("Day 2", ".\\Inputs\\Day2.txt") { }
+        public Impl() : base("Day 2 ", ".\\Puzzles\\Day2\\Input.txt") { }
 
         public override string RunPart1()
         {
