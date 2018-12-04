@@ -15,7 +15,7 @@
             var inputs = LoadInputs();
             var cloth = BuildClothMap(inputs);
 
-            //Fast 2d->1d Blit copy
+            //Fast 2d->1d block copy
             var tmp = new int[cloth.GetLength(0) * cloth.GetLength(1)];
             Buffer.BlockCopy(cloth, 0, tmp, 0, tmp.Length * sizeof(int));
             return tmp.Count(c => c > 1).ToString();
