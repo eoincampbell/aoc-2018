@@ -1,19 +1,22 @@
 ﻿namespace AdventOfCode.Puzzles.Day5
 {
     using Base;
+    using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    public class Impl : BasePuzzle
+    public class Impl2 : BasePuzzle
     {
-        public Impl() : base("Day 5r", ".\\Puzzles\\Day5\\Input.txt") { }
+        public Impl2() : base("Day 5b", ".\\Puzzles\\Day5\\Input.txt") { }
 
         public override async Task<string> RunPart1()
         {
-            var chars = Inputs.First().ToList();
+            var chars = Inputs.First().ToCharArray().ToList();
 
-            var result = RecursiveReduction(chars);
+            var result = BackTrackingReduction(chars);
                 
             return $"Len: {result.Count}";
         }
@@ -26,12 +29,12 @@
             {
                 var j = i;
                 var chars = Inputs.First().Where(f => f != (char)j && f != (char)(j + 32)).ToList();
-                var result = RecursiveReduction(chars);
+                var result = BackTrackingReduction(chars);
                 if (result.Count >= bestShortLength)
                     continue;
 
                 bestShortLength = result.Count;
-                removed = $"{(char) i}/{(char) (i + 32)}";
+                removed = $"{(char)i}/{(char)(i + 32)}";
             }
 
             return $"Removed: {removed} | Len: {bestShortLength}";
@@ -42,22 +45,17 @@
             return (a+32 == b || a-32 == b);
         }
 
-        private List<char> RecursiveReduction(List<char> chars)
+        private List<char> BackTrackingReduction(List<char> chars)
         {
-            var removed = false;
-            for (var i = 0; i < chars.Count - 1; i++)
+            for (var i = 0; i < chars.Count -1; i++)
             {
-                if (!CharCompare(chars[i], chars[i + 1]))
-                    continue;
+                if (!CharCompare(chars[i], chars[i + 1])) continue;
 
-                removed = true;
                 chars.RemoveAt(i + 1);
                 chars.RemoveAt(i);
-            }
 
-            if (removed)
-                chars = RecursiveReduction(chars);
-            
+                i = (i - 1 >= 0 ? i - 1 : 0) - 1;
+            }
 
             return chars;
         }

@@ -5,12 +5,13 @@
     using System.Collections.Concurrent;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     public class Impl : BasePuzzle
     {
         public Impl() : base("Day 4 ", ".\\Puzzles\\Day4\\Input.txt") { }
 
-        public override string RunPart1()
+        public override async Task<string> RunPart1()
         {
             ProcessInputs();
 
@@ -27,7 +28,7 @@
             return $"#{bestGuard.Key} * {bestMinute.Key} = {(bestGuard.Key * bestMinute.Key)}";
         }
 
-        public override string RunPart2()
+        public override async Task<string> RunPart2()
         {
             ProcessInputs();
 

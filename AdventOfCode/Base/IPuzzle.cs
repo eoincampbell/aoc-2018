@@ -1,10 +1,12 @@
 ﻿namespace AdventOfCode.Base
 {
+    using System.Threading.Tasks;
+
     public interface IPuzzle
     {
         string Name { get; }
-        void RunBothParts();
-        string RunPart1();
-        string RunPart2();
+        Task RunBothParts();
+        Task<string> RunPart1();
+        Task<string> RunPart2();
     }
 }

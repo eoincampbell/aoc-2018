@@ -3,17 +3,18 @@
     using Base;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class Impl : BasePuzzle
     {
         public Impl() : base("Day 1 ", ".\\Puzzles\\Day1\\Input.txt") { }
 
-        public override string RunPart1()
+        public override async Task<string> RunPart1()
         {
             return Inputs.Sum(int.Parse).ToString();
         }
 
-        public override string RunPart2()
+        public override async Task<string> RunPart2()
         {
             int counter = 0, i = 0;
             var inputs = Inputs.Select(int.Parse).ToList();

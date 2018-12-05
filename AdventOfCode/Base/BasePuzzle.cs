@@ -3,6 +3,8 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Threading.Tasks;
+
     public abstract class BasePuzzle : IPuzzle
     {
         private readonly string _inputFile;
@@ -27,13 +29,13 @@
 
         public string Name { get; }
 
-        public void RunBothParts()
+        public async Task RunBothParts()
         {
             //Part 1
             ResetInputs();
             _stopWatch.Reset();
             _stopWatch.Start();
-            var p1Result = RunPart1();
+            var p1Result = await RunPart1();
             _stopWatch.Stop();
 
             Console.WriteLine($"{Name} Part 1 | Exec: {_stopWatch.Elapsed:c} | {p1Result}");
@@ -42,14 +44,14 @@
             ResetInputs();
             _stopWatch.Reset();
             _stopWatch.Start();
-            var p2Result = RunPart2();
+            var p2Result = await RunPart2();
             _stopWatch.Stop();
 
             Console.WriteLine($"{Name} Part 2 | Exec: {_stopWatch.Elapsed:c} | {p2Result}");
         }
 
 
-        public abstract string RunPart1();
-        public abstract string RunPart2();
+        public abstract Task<string> RunPart1();
+        public abstract Task<string> RunPart2();
     }
 }

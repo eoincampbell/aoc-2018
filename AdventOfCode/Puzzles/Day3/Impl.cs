@@ -5,12 +5,13 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     public class Impl : BasePuzzle
     {
         public Impl() : base("Day 3 ", ".\\Puzzles\\Day3\\Input.txt") { }
 
-        public override string RunPart1()
+        public override async Task<string> RunPart1()
         {
             var inputs = LoadInputs();
             var cloth = BuildClothMap(inputs);
@@ -21,7 +22,7 @@
             return tmp.Count(c => c > 1).ToString();
         }
 
-        public override string RunPart2()
+        public override async Task<string> RunPart2()
         {
             var inputs = LoadInputs();
             var cloth = BuildClothMap(inputs);

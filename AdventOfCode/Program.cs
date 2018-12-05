@@ -16,6 +16,7 @@
                 , new Puzzles.Day3.Impl2()
                 , new Puzzles.Day4.Impl()
                 , new Puzzles.Day5.Impl()
+                , new Puzzles.Day5.Impl2()
             };
 
             puzzles.ForEach(f => f.RunBothParts());

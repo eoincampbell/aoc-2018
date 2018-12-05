@@ -2,12 +2,13 @@
 {
     using Base;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class Impl : BasePuzzle
     {
         public Impl() : base("Day 2 ", ".\\Puzzles\\Day2\\Input.txt") { }
 
-        public override string RunPart1()
+        public override async Task<string> RunPart1()
         {
             int twos = 0, threes = 0;
             foreach (var i in Inputs)
@@ -25,7 +26,7 @@
             return (twos * threes).ToString();
         }
 
-        public override string RunPart2()
+        public override async Task<string> RunPart2()
         {
             for (var i = 0; i < Inputs.Length; i++)
             {
