@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Base\BasePuzzle.cs" />
     <Compile Include="Puzzles\Day3\Impl2.cs" />
+    <Compile Include="Puzzles\Day5\Impl.cs" />
     <Compile Include="Puzzles\Day4\Impl.cs" />
     <Compile Include="Puzzles\Day3\Impl.cs" />
     <Compile Include="Puzzles\Day2\Impl.cs" />
@@ -65,9 +66,13 @@
     <None Include="Puzzles\Day1\Instructions.md" />
     <None Include="Puzzles\Day2\Instructions.md" />
     <None Include="Puzzles\Day3\Instructions.md" />
+    <None Include="Puzzles\Day5\Instructions.md" />
     <None Include="Puzzles\Day4\Instructions.md" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Puzzles\Day5\Input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Puzzles\Day4\Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
